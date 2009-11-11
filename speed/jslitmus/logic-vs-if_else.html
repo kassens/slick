@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- Provide a title.  This will be shown on the generated chart -->
+<title>Logic vs. if/else Blocks</title>
+
+<script type="text/javascript" src="JSLitmus.js"></script>
+<script type="text/javascript">
+
+JSLitmus.test('logic', function(count) {
+	function f(a, b, pos){
+		return (a < 0 || pos >= b) && (a > 0 || b >= pos) && (((pos - b) % a) === 0);
+	}
+	while (count--){
+		f(2, 1, 10);
+	}
+});
+
+JSLitmus.test('if/else', function(count) {
+	function f(a, b, pos){
+		if (a > 0){
+			if (pos < b) return false;
+		} else {
+			if (b < pos) return false;
+		}
+		return ((pos - b) % a) === 0;
+	}
+	while (count--){
+		// should probably use random values to prevent branch prediction
+		f(2, 1, 10);
+	}
+});
+
+</script>
+</head>
+<body>
+<p>Compare dense logic with if/else blocks</p>
+  <div id="test_element" style="overflow:hidden; width: 1px; height:1px;"></div>
+</body>
+</html>
