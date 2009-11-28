@@ -671,11 +671,9 @@ authors:
 	
 	Slick.deepMatch = function(node, expression, context){
 		// FIXME: FPO code only
-		var nodes = Slick(context||document, expression);
-		for (var i=0; i < nodes.length; i++){
-			if (nodes[i] === node){
-				return true;
-			}
+		var nodes = Slick(context || document, expression);
+		for (var i = 0; i < nodes.length; i++){
+			if (nodes[i] === node) return true;
 		}
 		return false;
 	};
